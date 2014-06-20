@@ -1,0 +1,22 @@
+{
+  "name": "duo-watch",
+  "version": "0.0.1",
+  "description": "watch for file changes and rebuild",
+  "keywords": [],
+  "author": "matthew mueller <mattmuelle@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/matthewmueller/duo-watch.git"
+  },
+  "dependencies": {
+    "debug": "^1.0.2",
+    "sane": "^0.5.2"
+  },
+  "devDependencies": {
+    "co": "^3.0.6",
+    "duo": "^0.2.8",
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "index"
+}
