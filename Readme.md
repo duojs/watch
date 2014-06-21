@@ -1,7 +1,41 @@
 
 # duo-watch
 
-  watch for file changes and rebuild
+  Watch for any changes in the file dependency tree and rebuild from the entry file.
+
+## Installation
+
+```
+npm install duo-watch
+```
+
+## Example
+
+```js
+Watcher(root).watch(function(file) {
+  console.log('changed: %s', file);
+
+  var duo = Duo(root)
+   .entry(file)
+
+  duo.run = co(duo.run);
+
+  duo.run(function(err) {
+    err && console.error(err);
+    console.log('rebuilt: %s', file);
+  });
+});
+```
+
+## API
+
+### `Watcher(root, [glob])`
+
+  Watch files from the `root`. Optionally pass a `glob`, to narrow down the files you watch. Defaults to `**/*.{js,css,html}`.
+
+### `watch(fn)`
+
+  Call `fn` whenever an entry file's dependencies changes. This will only fire for changes on top-level entry files. If one change affects multiple bundles, the function will be called for each entry.
 
 ## License 
 
