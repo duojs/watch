@@ -4,7 +4,6 @@
 
 var Duo = require('duo');
 var Watch = require('..');
-var co = require('co');
 var root = __dirname;
 
 /**
@@ -17,8 +16,6 @@ Watch(root).watch(function(file) {
   var duo = Duo(root)
    .entry(file)
   
-  duo.run = co(duo.run);
-
   duo.run(function(err) {
     err && console.error(err);
     console.log('rebuilt: %s', file);

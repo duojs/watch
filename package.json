@@ -13,7 +13,6 @@
     "sane": "^0.5.2"
   },
   "devDependencies": {
-    "co": "^3.0.6",
     "duo": "^0.2.8",
     "mocha": "*"
   },
