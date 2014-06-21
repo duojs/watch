@@ -31,7 +31,7 @@ Watcher(root).watch(function(file) {
 
 ### `Watcher(root, [glob])`
 
-  Watch files from the `root`. Optionally pass a `glob`, to narrow down the files you watch. Defaults to `**/*.{js,css,html}`.
+  Watch files from the `root`. Optionally pass a `glob`, to narrow down the files you watch. `glob` defaults to `**/*.{js,css,html}`.
 
 ### `watch(fn)`
 
