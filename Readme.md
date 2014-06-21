@@ -35,7 +35,7 @@ Watcher(root).watch(function(file) {
 
 ### `watch(fn)`
 
-  Call `fn` whenever an entry file's dependencies changes. This will only fire for changes on top-level entry files. If one change affects multiple bundles, the function will be called for each entry.
+  Call `fn` whenever an entry file or its dependencies changes. This will only fire for changes on top-level entry files. If one change affects multiple bundles, the function will be called for each entry.
 
 ## License 
 
