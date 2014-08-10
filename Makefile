@@ -1,8 +1,9 @@
 
 test:
 	@./node_modules/.bin/mocha \
-		--require should \
-		--reporter spec
+		--harmony-generators \
+		--reporter spec \
+		--require co-mocha
 
 example:
 	@./node_modules/.bin/duo \

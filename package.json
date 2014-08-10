@@ -13,8 +13,11 @@
     "sane": "^0.5.2"
   },
   "devDependencies": {
-    "duo": "^0.2.8",
-    "mocha": "*"
+    "co-mocha": "0.0.4",
+    "duo": "^0.6.0",
+    "mkdirp": "^0.5.0",
+    "mocha": "*",
+    "touch": "0.0.3"
   },
   "main": "index"
 }
