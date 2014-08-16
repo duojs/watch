@@ -39,13 +39,12 @@ describe('duo-watch', function() {
     }
   });
 
-  describe('watch(root, file)', function() {
+  describe('watch(root)', function() {
 
     it('should detect single file changes', function *() {
       var root = path('single');
       var js = yield duo(root).run();
-      var json = manifest(root);
-      var watch = yield Watch(root, 'index.js');
+      var watch = yield Watch(root);
       var called = 0;
 
       watch.watch(function(entry) {
@@ -53,22 +52,61 @@ describe('duo-watch', function() {
         called++;
       })
 
-      var a = change(join(root, 'a.js'));
+      touch(join(root, 'a.js'));
       yield wait(300);
 
-      var b = change(join(root, 'b.js'));
+      touch(join(root, 'b.js'));
       yield wait(300);
 
-      var index = change(join(root, 'index.js'));
+      touch(join(root, 'index.js'));
       yield wait(300);
 
       assert(3 == called, 'expected 3 got ' + called);
+    });
 
-      // unchange everything
-      index();
-      a();
-      b();
-    })
+    it('should detect multiple changes', function *() {
+      var root = path('multiple');
+      var home = duo(root, 'home.js');
+      var admin = duo(root, 'admin.js');
+      var entries = ['home.js', 'home.js', 'admin.js', 'admin.js'];
+
+      yield [home.run(), admin.run()];
+
+      var watch = yield Watch(root);
+
+      watch.watch(function(entry) {
+        var i = entries.indexOf(entry);
+        if (~i) entries.splice(i, 1);
+      })
+
+      // trigger "change"
+      touch(join(root, 'dep.js'));
+      yield wait(300);
+
+      // trigger "change"
+      touch(join(root, 'component.json'));
+      yield wait(300);
+
+      assert(!entries.length);
+    });
+
+    it('should detect component.json changes', function *() {
+      var root = path('single');
+      var js = yield duo(root).run();
+      var watch = yield Watch(root);
+      var called = 0;
+
+
+      watch.watch(function(entry) {
+        assert('index.js' == entry);
+        called++;
+      })
+
+      touch(join(root, 'component.json'));
+      yield wait(300);
+
+      assert(1 == called, 'expected 1 got ' + called);
+    });
   })
 
 });
@@ -77,25 +115,12 @@ describe('duo-watch', function() {
  * Watch
  */
 
-function Watch(root, file) {
+function Watch(root) {
   return function(fn) {
-    var w = new Watcher(root, file);
+    var w = new Watcher(root);
     w.sane.on('ready', function(err) {
       fn(err, w);
     });
-  }
-}
-
-/**
- * change
- */
-
-function change(path) {
-  var str = read(path, 'utf-8');
-  write(path, str + '!');
-
-  return function() {
-    write(path, str);
   }
 }
 
@@ -107,14 +132,6 @@ function wait(ms) {
   return function(fn) {
     setTimeout(fn, ms);
   }
-}
-
-/**
- * mtime
- */
-
-function mtime(path) {
-  return stat(path).mtime;
 }
 
 /**
@@ -134,13 +151,4 @@ function duo(root, entry) {
 
   return Duo(root)
     .entry(entry);
-}
-
-/**
- * Manifest
- */
-
-function manifest(root) {
-  manifest = join(root, 'components', 'duo.json');
-  return require(manifest);
 }
