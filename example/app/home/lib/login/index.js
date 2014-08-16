@@ -1,1 +1,1 @@
-module.exports = 'log out!'
+module.exports = 'log out!!!'

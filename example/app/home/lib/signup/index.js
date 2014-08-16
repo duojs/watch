@@ -4,4 +4,4 @@
 
 var event = require('event');
 
-module.exports = 'signup!';
+module.exports = 'signup!!';

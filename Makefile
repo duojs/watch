@@ -6,14 +6,9 @@ test:
 		--require co-mocha
 
 example:
-	@./node_modules/.bin/duo \
-		--root example/ \
-		app/home/index.js \
-		1> /dev/null
-
-	@./node_modules/.bin/duo \
-		--root example/ \
-		app/admin/index.js \
-		1> /dev/null
+	@duo \
+		--root example \
+		example/app/{admin,home}/*.js
+	@node example/
 
 .PHONY: example test

@@ -5,4 +5,4 @@
 var infinity = require('component/infinity');
 var event = require('component/event');
 
-console.log('admin!!!');
+console.log('admin!!!!!!!');

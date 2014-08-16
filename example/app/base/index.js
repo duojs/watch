@@ -7,3 +7,4 @@ var clone = require('component/clone');
 var uid = require('uid');
 var array = require('array');
 
+console.log('lol...');
