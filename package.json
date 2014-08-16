@@ -1,6 +1,6 @@
 {
   "name": "duo-watch",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "watch for file changes and rebuild",
   "keywords": [],
   "author": "matthew mueller <mattmuelle@gmail.com>",
