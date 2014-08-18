@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "debug": "^1.0.2",
+    "minimatch": "^1.0.0",
     "sane": "~0.5.4"
   },
   "devDependencies": {

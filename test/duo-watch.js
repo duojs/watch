@@ -94,9 +94,8 @@ describe('duo-watch', function() {
       var root = path('single');
       var js = yield duo(root).run();
       var watch = yield Watch(root);
+
       var called = 0;
-
-
       watch.watch(function(entry) {
         assert('index.js' == entry);
         called++;
@@ -107,6 +106,14 @@ describe('duo-watch', function() {
 
       assert(1 == called, 'expected 1 got ' + called);
     });
+
+    it('should only initialize file watching on a given root once', function *() {
+      var root = path('single');
+      var js = yield duo(root).run();
+      var watch = yield Watch(root);
+      watch.watch(function(){});
+      assert(watch.fns.length > 1);
+    })
   })
 
 });
@@ -118,6 +125,7 @@ describe('duo-watch', function() {
 function Watch(root) {
   return function(fn) {
     var w = new Watcher(root);
+    if (w.ready) return fn(null, w);
     w.sane.on('ready', function(err) {
       fn(err, w);
     });
