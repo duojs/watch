@@ -1,6 +1,9 @@
 
 # duo-watch
 
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+
   Watch for any changes in the file dependency tree and rebuild from the entry file.
 
 ## Installation
@@ -37,7 +40,7 @@ Watcher(root).watch(function(file) {
 
   Call `fn` whenever an entry file or its dependencies changes. Watch will pass the top-level entry files as to the function as `function(file) { ... }`. If one change affects multiple bundles, the function will be called for each entry.
 
-## License 
+## License
 
 (The MIT License)
 
@@ -61,3 +64,8 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[npm-image]: https://img.shields.io/npm/v/duo-watch.svg?style=flat
+[npm-url]: https://npmjs.org/package/duo-watch
+[travis-image]: https://img.shields.io/travis/duojs/watch.svg?style=flat
+[travis-url]: https://travis-ci.org/duojs/watch
