@@ -1,7 +1,7 @@
 
 # duo-watch
 
-  Watch for any changes in the file dependency tree and rebuild from the entry file.
+  Watch for any changes in the file dependency tree and rebuild from the entry file. This library is included in core.
 
 ## Installation
 
