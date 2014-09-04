@@ -6,7 +6,7 @@
   "author": "matthew mueller <mattmuelle@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/matthewmueller/duo-watch.git"
+    "url": "git://github.com/duojs/watch.git"
   },
   "dependencies": {
     "debug": "^1.0.2",
